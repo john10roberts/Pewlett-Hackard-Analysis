@@ -31,7 +31,7 @@ Began with a query to show all the employees were born between 1952 - 1955.
 ![RetiringEmployeesByTitle](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/retirement_titles.csv)
 
 Next, we removed duplicated employees that have had title changes over the years using the DISTINCT ON statement to retrieve the first occurrence of the employee number defined by the ON () clause.
-```
+```sql
        --Retrieve distinct employees by using DISTINCT ON emp_no
             SELECT DISTINCT ON (emp_no) emp_no
                 ,first_name
@@ -44,7 +44,7 @@ Next, we removed duplicated employees that have had title changes over the years
 ![RetiringEmployeesUniqueTitles](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/unique_titles.csv)
 
 Then we grouped unique titles to get a count of the number of employees retiring by title
-```
+```sql
    --retiring employees by title count
             SELECT COUNT (title)
                 ,title
@@ -56,7 +56,7 @@ Then we grouped unique titles to get a count of the number of employees retiring
 ![RetiringEmployeesCountByTitle](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/retiring_titles.csv)
 
 Then we created a query to show all the employees that would be eligible to participate in a mentorship program. These employees would be active employees who had birthdates between 1-1-1965 and 12-31-1965. We will once again use the DISTINCT ON clause to remove duplicates. 
-```
+```sql
     --mentorship program
         SELECT DISTINCT ON (e.emp_no) e.emp_no
             ,e.first_name
@@ -75,7 +75,7 @@ Then we created a query to show all the employees that would be eligible to part
 ![MentorshipEligibility](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/mentorship_eligibilty.csv)
 
 Lastly, we created a mentorship eligibility count on Titles so that we could quickly show management the number of mentors we had vs the number of employees retiring by titles
-```
+```sql
    --Mentorship count
         SELECT COUNT (title)
             ,title
