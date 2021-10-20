@@ -26,7 +26,7 @@ Began with a query to show all the employees were born between 1952 - 1955.
     WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
     ORDER BY emp_no;
 
-![RetiringEmployeesByTitle](https://github.com/john10roberts/World_Weather_Analysis/blob/main/Data/retirement_titles.csv)
+![RetiringEmployeesByTitle](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/retirement_titles.csv)
 
 Next, we removed duplicated employees that have had title changes over the years using the DISTINCT ON statement to retrieve the first occurrence of the employee number defined by the ON () clause.
     --Retrieve distinct employees by using DISTINCT ON emp_no
@@ -38,7 +38,7 @@ Next, we removed duplicated employees that have had title changes over the years
     FROM retirement_titles
     ORDER BY emp_no, to_date DESC;
 
-![RetiringEmployeesUniqueTitles](https://github.com/john10roberts/World_Weather_Analysis/blob/main/Data/unique_titles.csv)
+![RetiringEmployeesUniqueTitles](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/unique_titles.csv)
 
 Then we grouped unique titles to get a count of the number of employees retiring by title
     SELECT COUNT (title)
@@ -48,7 +48,7 @@ Then we grouped unique titles to get a count of the number of employees retiring
     GROUP BY TITLE
     Order BY COUNT(title) DESC;
 
-![RetiringEmployeesCountByTitle](https://github.com/john10roberts/World_Weather_Analysis/blob/main/Data/retiring_titles.csv)
+![RetiringEmployeesCountByTitle](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/retiring_titles.csv)
 
 Then we created a query to show all the employees that would be eligible to participate in a mentorship program. These employees would be active employees who had birthdates between 1-1-1965 and 12-31-1965. We will once again use the DISTINCT ON clause to remove duplicates. 
     SELECT DISTINCT ON (e.emp_no) e.emp_no
@@ -65,7 +65,7 @@ Then we created a query to show all the employees that would be eligible to part
     WHERE d.to_date = '9999-01-01' and e.birth_date BETWEEN '1965-01-01' AND '1965-12-31'
     ORDER BY e.emp_no;
 
-![MentorshipEligibility](https://github.com/john10roberts/World_Weather_Analysis/blob/main/Data/mentorship_eligibilty.csv)
+![MentorshipEligibility](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/mentorship_eligibilty.csv)
 
 Lastly, we created a mentorship eligibility count on Titles so that we could quickly show management the number of mentors we had vs the number of employees retiring by titles
     SELECT COUNT (title)
@@ -75,12 +75,12 @@ Lastly, we created a mentorship eligibility count on Titles so that we could qui
     GROUP BY TITLE
     Order BY COUNT(title) DESC;
 
-![MentorshipEligibilityCount](https://github.com/john10roberts/World_Weather_Analysis/blob/main/Data/mentorship_eligibilty_count.csv)
+![MentorshipEligibilityCount](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/mentorship_eligibilty_count.csv)
 
 ### Summary
 As the "silver tsunami" begins to have an impact on the company, there are a total of 90,398 employees that are of retirement age. Our total workforce is 300,024 if everyone who was of retirement age left the company today, we would a third of the workers. 
 
-![MentorshipEligibilityCount](https://github.com/john10roberts/World_Weather_Analysis/blob/main/Data/all_active_employees_count.csv)
+![MentorshipEligibilityCount](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/all_active_employees_count.csv)
 
 Additionally, there does not appear to be enough workers eligible for the mentorship program to oversee all the employees that would be leaving. There are a total of 1549 employees that are eligible for the mentorship program. This would be 1% of the existing workforce. That does not seem substantial enough to prepare the company should a third of the workers decide to retire. 
 
