@@ -89,7 +89,7 @@ Lastly, we created a mentorship eligibility count on Titles so that we could qui
 ### Summary
 As the "silver tsunami" begins to have an impact on the company, there are a total of 90,398 employees that are of retirement age. Our total workforce is 300,024 if everyone who was of retirement age left the company today, we would a third of the workers. 
 
-![MentorshipEligibilityCount](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/all_active_employees_count.csv)
+![AllActiveEmployeesCount](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/all_active_employees_count.csv)
 
 Additionally, there does not appear to be enough workers eligible for the mentorship program to oversee all the employees that would be leaving. There are a total of 1549 employees that are eligible for the mentorship program. This would be 1% of the existing workforce. That does not seem substantial enough to prepare the company should a third of the workers decide to retire. 
 
