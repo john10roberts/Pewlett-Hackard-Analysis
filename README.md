@@ -13,67 +13,67 @@ Based on the following queries we can safely assume that
 -There does not seem to be enough mentors to mentor lower-level employees should everyone of retirement age leave the company immediately
 
 Began with a query to show all the employees were born between 1952 - 1955. 
-    --retiring employees by titles
-    SELECT  e.emp_no
-        ,e.first_name
-        ,e.last_name
-        ,t.title
-        ,t.from_date
-        ,t.to_date
-    INTO retirement_titles      
-    FROM employees AS e INNER JOIN 
-    titles AS t ON e.emp_no = t.emp_no
-    WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
-    ORDER BY emp_no;
+        --retiring employees by titles
+        SELECT  e.emp_no
+            ,e.first_name
+            ,e.last_name
+            ,t.title
+            ,t.from_date
+            ,t.to_date
+        INTO retirement_titles      
+        FROM employees AS e INNER JOIN 
+        titles AS t ON e.emp_no = t.emp_no
+        WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+        ORDER BY emp_no;
 
 ![RetiringEmployeesByTitle](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/retirement_titles.csv)
 
 Next, we removed duplicated employees that have had title changes over the years using the DISTINCT ON statement to retrieve the first occurrence of the employee number defined by the ON () clause.
-    --Retrieve distinct employees by using DISTINCT ON emp_no
-    SELECT DISTINCT ON (emp_no) emp_no
-    ,first_name
-    ,last_name
-    ,title
-    INTO unique_titles
-    FROM retirement_titles
-    ORDER BY emp_no, to_date DESC;
+        --Retrieve distinct employees by using DISTINCT ON emp_no
+        SELECT DISTINCT ON (emp_no) emp_no
+        ,first_name
+        ,last_name
+        ,title
+        INTO unique_titles
+        FROM retirement_titles
+        ORDER BY emp_no, to_date DESC;
 
 ![RetiringEmployeesUniqueTitles](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/unique_titles.csv)
 
 Then we grouped unique titles to get a count of the number of employees retiring by title
-    SELECT COUNT (title)
-    ,title
-    INTO retiring_titles
-    FROM unique_titles
-    GROUP BY TITLE
-    Order BY COUNT(title) DESC;
+        SELECT COUNT (title)
+        ,title
+        INTO retiring_titles
+        FROM unique_titles
+        GROUP BY TITLE
+        Order BY COUNT(title) DESC;
 
 ![RetiringEmployeesCountByTitle](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/retiring_titles.csv)
 
 Then we created a query to show all the employees that would be eligible to participate in a mentorship program. These employees would be active employees who had birthdates between 1-1-1965 and 12-31-1965. We will once again use the DISTINCT ON clause to remove duplicates. 
-    SELECT DISTINCT ON (e.emp_no) e.emp_no
-    ,e.first_name
-    ,e.last_name
-    ,e.birth_date
-    ,d.from_date
-    ,d.to_date
-    ,t.title
-    INTO mentorship_eligibility
-    FROM employees as e INNER JOIN
-    dept_emp as d on e.emp_no = d.emp_no INNER JOIN
-    titles as t on e.emp_no = t.emp_no
-    WHERE d.to_date = '9999-01-01' and e.birth_date BETWEEN '1965-01-01' AND '1965-12-31'
-    ORDER BY e.emp_no;
+        SELECT DISTINCT ON (e.emp_no) e.emp_no
+        ,e.first_name
+        ,e.last_name
+        ,e.birth_date
+        ,d.from_date
+        ,d.to_date
+        ,t.title
+        INTO mentorship_eligibility
+        FROM employees as e INNER JOIN
+        dept_emp as d on e.emp_no = d.emp_no INNER JOIN
+        titles as t on e.emp_no = t.emp_no
+        WHERE d.to_date = '9999-01-01' and e.birth_date BETWEEN '1965-01-01' AND '1965-12-31'
+        ORDER BY e.emp_no;
 
 ![MentorshipEligibility](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/mentorship_eligibilty.csv)
 
 Lastly, we created a mentorship eligibility count on Titles so that we could quickly show management the number of mentors we had vs the number of employees retiring by titles
-    SELECT COUNT (title)
-    ,title
-    INTO mentorship_eligibility_count
-    FROM mentorship_eligibility
-    GROUP BY TITLE
-    Order BY COUNT(title) DESC;
+        SELECT COUNT (title)
+        ,title
+        INTO mentorship_eligibility_count
+        FROM mentorship_eligibility
+        GROUP BY TITLE
+        Order BY COUNT(title) DESC;
 
 ![MentorshipEligibilityCount](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/mentorship_eligibilty_count.csv)
 
