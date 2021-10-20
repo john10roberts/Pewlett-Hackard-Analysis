@@ -13,8 +13,8 @@ Based on the following queries we can safely assume that
 -There does not seem to be enough mentors to mentor lower-level employees should everyone of retirement age leave the company immediately
 
 Began with a query to show all the employees were born between 1952 - 1955. 
-    ```
-    -retiring employees by titles
+```
+    --retiring employees by titles
         SELECT  e.emp_no
             ,e.first_name
             ,e.last_name
@@ -26,13 +26,13 @@ Began with a query to show all the employees were born between 1952 - 1955.
         titles AS t ON e.emp_no = t.emp_no
         WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
         ORDER BY emp_no;
-    ```
+```
     
 ![RetiringEmployeesByTitle](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/retirement_titles.csv)
 
 Next, we removed duplicated employees that have had title changes over the years using the DISTINCT ON statement to retrieve the first occurrence of the employee number defined by the ON () clause.
 ```
-       -Retrieve distinct employees by using DISTINCT ON emp_no
+       --Retrieve distinct employees by using DISTINCT ON emp_no
             SELECT DISTINCT ON (emp_no) emp_no
                 ,first_name
                 ,last_name
@@ -44,8 +44,8 @@ Next, we removed duplicated employees that have had title changes over the years
 ![RetiringEmployeesUniqueTitles](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/unique_titles.csv)
 
 Then we grouped unique titles to get a count of the number of employees retiring by title
-   ```
-   -retiring employees by title count
+```
+   --retiring employees by title count
             SELECT COUNT (title)
                 ,title
         INTO retiring_titles
@@ -56,8 +56,8 @@ Then we grouped unique titles to get a count of the number of employees retiring
 ![RetiringEmployeesCountByTitle](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/retiring_titles.csv)
 
 Then we created a query to show all the employees that would be eligible to participate in a mentorship program. These employees would be active employees who had birthdates between 1-1-1965 and 12-31-1965. We will once again use the DISTINCT ON clause to remove duplicates. 
-    ```
-    -mentorship program
+```
+    --mentorship program
         SELECT DISTINCT ON (e.emp_no) e.emp_no
             ,e.first_name
             ,e.last_name
@@ -75,8 +75,8 @@ Then we created a query to show all the employees that would be eligible to part
 ![MentorshipEligibility](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/mentorship_eligibilty.csv)
 
 Lastly, we created a mentorship eligibility count on Titles so that we could quickly show management the number of mentors we had vs the number of employees retiring by titles
-   ```
-   -Mentorship count
+```
+   --Mentorship count
         SELECT COUNT (title)
             ,title
         INTO mentorship_eligibility_count
