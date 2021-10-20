@@ -31,7 +31,7 @@ Began with a query to show all the employees were born between 1952 - 1955.
 ![RetiringEmployeesByTitle](https://github.com/john10roberts/Pewlett-Hackard-Analysis/blob/main/Data/retirement_titles.csv)
 
 Next, we removed duplicated employees that have had title changes over the years using the DISTINCT ON statement to retrieve the first occurrence of the employee number defined by the ON () clause.
-       ```
+```
        -Retrieve distinct employees by using DISTINCT ON emp_no
             SELECT DISTINCT ON (emp_no) emp_no
                 ,first_name
