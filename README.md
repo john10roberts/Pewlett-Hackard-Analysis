@@ -13,7 +13,7 @@ Based on the following queries we can safely assume that
 -There does not seem to be enough mentors to mentor lower-level employees should everyone of retirement age leave the company immediately
 
 Began with a query to show all the employees were born between 1952 - 1955. 
-```
+```sql
     --retiring employees by titles
         SELECT  e.emp_no
             ,e.first_name
